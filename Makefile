@@ -1,28 +1,27 @@
 NAME = fractol
 
-FLAGS = -Iinclude -lglfw -framework Cocoa -framework OpenGL -framework IOKit
-MLX = "MLX42/build/libmlx42.a"
+CFLAGS = -Wall -Wextra -Werror
+LIBMLX = MLX42
+HEADERS	= -I ./include -I $(LIBMLX)/include
+LIBS = $(LIBMLX)/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
+#LIBS = "MLX42/build/libmlx42.a"
 LIBFT = "libft/libft.a"
-SRC = 	src/main.c \
-		src/init.c \
-		src/render.c \
-		src/math_utils.c \
-		src/events.c \
-		src/string_utils.c
-
-CC = gcc
+SRC = $(shell find ./src -iname "*.c")
 
 OBJ = $(SRC:.c=.o)
 
+all:	libmlx $(NAME)
+
+libmlx:
+	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+
 $(NAME): $(OBJ)
 		make -C libft
-		cc $(SRC) $(MLX) $(LIBFT) $(FLAGS) -o $(NAME)
+		@$(CC) $(SRC) $(LIBS) $(LIBFT) $(HEADERS) -o $(NAME)
 		make clean
 
 %.o: %.c
-	cc -Wall -Wextra -Werror -Imlx -c $< -o $@
-
-all:	$(NAME)
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 clean:
 		make clean  -C libft
@@ -32,4 +31,4 @@ fclean:	clean
 		make fclean -C libft
 		rm -f $(NAME)
 
-re:	fclean all
+re:	clean all

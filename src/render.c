@@ -11,6 +11,8 @@ static void	mandel_or_julia(t_complex *z, t_complex *c, t_fractal *fractal)
 	{
 		c->x = z->x;
 		c->y = z->y;
+        z->x = 0;
+        z->y = 0;
 	}
 }
 

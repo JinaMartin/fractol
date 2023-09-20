@@ -52,6 +52,7 @@ typedef struct s_fractal
 }		t_fractal;
 
 double  	atodbl(char *s);
+void		scroll_handler(double xdelta, double ydelta, void *param);
 void		close_handler(t_fractal *fractal);
 void		key_handler(mlx_key_data_t keydata, void *param);
 void		fractal_init(t_fractal *fractal);

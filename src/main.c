@@ -8,8 +8,11 @@ int	main(int argc, char **argv)
 		|| (argc == 4 && !ft_strncmp(argv[1], "julia", 5))) 
 		{
 			fractal.name = argv[1];
-			fractal.julia_x = atodbl(argv[2]);
-			fractal.julia_y = atodbl(argv[3]);
+			if (argc == 4 && !ft_strncmp(argv[1], "julia", 5))
+			{
+				fractal.julia_x = atodbl(argv[2]);
+				fractal.julia_y = atodbl(argv[3]);
+			}
 			fractal_init(&fractal);
 			fractal_render(&fractal);
 		}
@@ -19,6 +22,7 @@ int	main(int argc, char **argv)
 			exit(EXIT_FAILURE);
 		}
 	mlx_key_hook(fractal.mlx_window, key_handler, &fractal);
-	// mlx_scroll_hook(fractal.mlx_window, scroll_handler, &fractal);
+	mlx_scroll_hook(fractal.mlx_window, scroll_handler, &fractal);
 	mlx_loop(fractal.mlx_window);
+	mlx_terminate(fractal.mlx_window);
 }
