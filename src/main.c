@@ -12,13 +12,13 @@ int	main(int argc, char **argv)
 			fractal.julia_y = atodbl(argv[3]);
 			fractal_init(&fractal);
 			fractal_render(&fractal);
-			mlx_key_hook(fractal.mlx_window, key_handler, &fractal);
-			// mlx_scroll_hook(fractal.mlx_window, scroll_handler, &fractal);
-			mlx_loop(fractal.mlx_window);
 		}
 	else
 		{
 			ft_putstr_fd(ERROR_MESSAGE, STDERR_FILENO);
 			exit(EXIT_FAILURE);
 		}
+	mlx_key_hook(fractal.mlx_window, key_handler, &fractal);
+	// mlx_scroll_hook(fractal.mlx_window, scroll_handler, &fractal);
+	mlx_loop(fractal.mlx_window);
 }

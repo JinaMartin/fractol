@@ -20,16 +20,16 @@ void    fractal_init(t_fractal *fractal)
 	fractal->mlx_window = mlx_init(WIDTH, HEIGHT, fractal->name, false);
 	if (fractal->mlx_window == NULL)
 	{
+		malloc_error();
 		puts(mlx_strerror(mlx_errno));
 		free(fractal->mlx_window);
-		malloc_error();
 	}
 	fractal->img = mlx_new_image(fractal->mlx_window, WIDTH, HEIGHT);
 	if (fractal->img == NULL)
 	{
+		malloc_error();
 		mlx_terminate(fractal->mlx_window);
 		free(fractal->mlx_window);
-		malloc_error();
 	}
 	data_init(fractal);
 }
