@@ -7,7 +7,8 @@ SRC = 	src/main.c \
 		src/init.c \
 		src/render.c \
 		src/math_utils.c \
-		src/events.c
+		src/events.c \
+		src/string_utils.c
 
 CC = gcc
 

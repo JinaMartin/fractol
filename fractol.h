@@ -15,7 +15,8 @@
 #define WHITE	0xFFFFFFFF
 #define RED		0xFF0000FF
 #define GREEN	0x00FF00FF
-#define BLUE	0xFF0000FF
+#define BLUE	0x0000FFFF
+#define GRAY	0x646464FF
 
 //psych
 #define MAGENTA_BURST		0xFF00FF00
@@ -42,13 +43,15 @@ typedef struct s_fractal
 	double		shift_x;
 	double		shift_y;
 	double		zoom;
+	double		julia_x;
+	double		julia_y;
 	mlx_image_t	*img;
 	mlx_t		*mlx_window;
 	double		escape_value;
 	int			iterations_definition;//value  tight with image quality
 }		t_fractal;
 
-// void		scroll_handler(double ydelta, void *param);
+double  	atodbl(char *s);
 void		close_handler(t_fractal *fractal);
 void		key_handler(mlx_key_data_t keydata, void *param);
 void		fractal_init(t_fractal *fractal);

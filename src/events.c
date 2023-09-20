@@ -7,21 +7,21 @@ void key_handler(mlx_key_data_t keydata, void *param)
     fractal = param;
 
     if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
-        fractal->shift_x -= 0.2;
+        fractal->shift_x -= 0.5 * fractal->zoom;
     else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
-        fractal->shift_x += 0.2;
+        fractal->shift_x += 0.5 * fractal->zoom;
 	else if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
-        fractal->shift_y += 0.2;
-	else if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
-        fractal->shift_y -= 0.2;
+        fractal->shift_y += 0.5 * fractal->zoom;
+	else if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
+        fractal->shift_y -= 0.5 * fractal->zoom;
     else if (keydata.key == MLX_KEY_RIGHT_SHIFT && keydata.action == MLX_PRESS)
         fractal->iterations_definition += 10;
 	else if (keydata.key == MLX_KEY_LEFT_SHIFT && keydata.action == MLX_PRESS)
         fractal->iterations_definition -= 10;
 	else if (keydata.key == MLX_KEY_RIGHT_ALT && keydata.action == MLX_PRESS)
-        fractal->zoom *= 0.95;
+        fractal->zoom *= 0.70;
 	else if (keydata.key == MLX_KEY_LEFT_ALT && keydata.action == MLX_PRESS)
-        fractal->zoom *= 1.05;
+        fractal->zoom *= 1.30;
 	else if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
         close_handler(fractal);
 	fractal_render(fractal);
