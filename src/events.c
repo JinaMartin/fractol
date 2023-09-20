@@ -38,12 +38,12 @@ void	scroll_handler(double xdelta, double ydelta, void *param)
 	t_fractal	*fractal;
 
 	fractal = param;
-	fractal->zoom = ydelta;
+	fractal->scroll += ydelta;
 	(void)xdelta;
-	if (ydelta > 0)
-		fractal->zoom *= 1.10;
-	else if (ydelta < 0)
-		fractal->zoom *= 0.90;
-	printf("%f", ydelta);
+	if (fractal->scroll > 0)
+		fractal->zoom = fractal->scroll * 1.10;
+	else if (fractal->scroll < 0)
+		fractal->zoom = fractal->scroll * 0.90 * -1;
+	printf("%f", fractal->scroll);
 	fractal_render(fractal);
 }

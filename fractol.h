@@ -43,6 +43,7 @@ typedef struct s_fractal
 	double		shift_x;
 	double		shift_y;
 	double		zoom;
+	double		scroll;
 	double		julia_x;
 	double		julia_y;
 	mlx_image_t	*img;
