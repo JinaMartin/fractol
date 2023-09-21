@@ -18,10 +18,12 @@ void key_handler(mlx_key_data_t keydata, void *param)
         fractal->iterations_definition += 10;
 	else if (keydata.key == MLX_KEY_LEFT_SHIFT && keydata.action == MLX_PRESS)
         fractal->iterations_definition -= 10;
-	//else if (keydata.key == MLX_KEY_RIGHT_ALT && keydata.action == MLX_PRESS)
-    //    fractal->zoom *= 0.70;
-	//else if (keydata.key == MLX_KEY_LEFT_ALT && keydata.action == MLX_PRESS)
-    //    fractal->zoom *= 1.30;
+	else if (keydata.key == MLX_KEY_RIGHT_ALT && keydata.action == MLX_PRESS)
+        fractal->zoom *= 0.70;
+	else if (keydata.key == MLX_KEY_LEFT_ALT && keydata.action == MLX_PRESS)
+        fractal->zoom *= 1.30;
+	// else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
+		// set_color(fractal);
 	else if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
         close_handler(fractal);
 	fractal_render(fractal);
@@ -44,6 +46,7 @@ void	scroll_handler(double xdelta, double ydelta, void *param)
 		fractal->zoom = fractal->scroll * 1.10;
 	else if (fractal->scroll < 0)
 		fractal->zoom = fractal->scroll * 0.90 * -1;
+		;
 	printf("%f", fractal->scroll);
 	fractal_render(fractal);
 }

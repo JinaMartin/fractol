@@ -8,6 +8,7 @@
 # include <math.h>
 
 #define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
+#define JULIA_INPUTS "Possible julia inputs:\n-0.79 0.15\n-0.169 1.04\n 0.3 -0.01\n-1.476 0\n-0.12 -0.77\n 0.28 + 0.008\n"
 
 #define WIDTH	800
 #define HEIGHT	800
@@ -29,7 +30,19 @@
 #define ELECTRIC_BLUE		0x0066FFFF
 #define LAVA_RED			0xFF3300FF
 
-typedef struct s_complex
+typedef union s_color
+{
+	uint32_t	rgbt;
+	struct
+	{
+		uint8_t	r;
+		uint8_t	g;
+		uint8_t	b;
+		uint8_t	t;
+	};
+}		t_color;
+
+typedef struct	s_complex
 {
     //	real
     double  x;
@@ -37,7 +50,7 @@ typedef struct s_complex
     double  y;
 }		t_complex;
 
-typedef struct s_fractal
+typedef struct	s_fractal
 {
 	char		*name;
 	double		shift_x;
@@ -46,6 +59,7 @@ typedef struct s_fractal
 	double		scroll;
 	double		julia_x;
 	double		julia_y;
+	// colors_t	col;
 	mlx_image_t	*img;
 	mlx_t		*mlx_window;
 	double		escape_value;
@@ -58,7 +72,9 @@ void		close_handler(t_fractal *fractal);
 void		key_handler(mlx_key_data_t keydata, void *param);
 void		fractal_init(t_fractal *fractal);
 void		fractal_render(t_fractal *fractal);
+// void		set_color(t_fractal *fractal);
 double  	map(double unscaled_num, double new_min, double new_max, double old_min, double old_max);
+uint32_t	color_management(t_complex *z, int i);
 t_complex	sum_complex(t_complex z1, t_complex z2);
 t_complex	square_complex(t_complex z);
 

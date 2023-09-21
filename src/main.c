@@ -18,7 +18,11 @@ int	main(int argc, char **argv)
 		}
 	else
 		{
-			ft_putstr_fd(ERROR_MESSAGE, STDERR_FILENO);
+
+			if (!ft_strncmp(argv[1], "julia", 5))
+				perror(JULIA_INPUTS);
+			else
+				ft_putstr_fd(ERROR_MESSAGE, STDERR_FILENO);
 			exit(EXIT_FAILURE);
 		}
 	mlx_key_hook(fractal.mlx_window, key_handler, &fractal);

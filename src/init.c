@@ -13,6 +13,7 @@ static void	data_init(t_fractal *fractal)
 	fractal->shift_x = 0.0;
 	fractal->shift_y = 0.0;
 	fractal->zoom = 1.0;
+	// fractal->col = 0;
 }
 
 void    fractal_init(t_fractal *fractal)
