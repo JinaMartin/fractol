@@ -7,11 +7,12 @@
 # include <unistd.h>
 # include <math.h>
 
-#define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
+#define ERROR_MESSAGE "Please enter \n\t\"./fractol m\" or \n\t\"./fractol j <value_1> <value_2>\"\n"
 #define JULIA_INPUTS "Possible julia inputs:\n-0.79 0.15\n-0.169 1.04\n 0.3 -0.01\n-1.476 0\n-0.12 -0.77\n 0.28 + 0.008\n"
 
 #define WIDTH	800
 #define HEIGHT	800
+
 #define BLACK	0x000000FF
 #define WHITE	0xFFFFFFFF
 #define RED		0xFF0000FF
@@ -67,13 +68,15 @@ typedef struct	s_fractal
 }		t_fractal;
 
 double  	atodbl(char *s);
+void		input_error(char *arg);
 void		scroll_handler(double xdelta, double ydelta, void *param);
 void		close_handler(t_fractal *fractal);
 void		key_handler(mlx_key_data_t keydata, void *param);
 void		fractal_init(t_fractal *fractal);
 void		fractal_render(t_fractal *fractal);
-// void		set_color(t_fractal *fractal);
-double  	map(double unscaled_num, double new_min, double new_max, double old_min, double old_max);
+void		no_input(void);
+// uint32_t	set_color(uint32_t i);
+double  	map(double unscaled_num, double new_min, double new_max, double old_max);
 uint32_t	color_management(t_complex *z, int i);
 t_complex	sum_complex(t_complex z1, t_complex z2);
 t_complex	square_complex(t_complex z);
